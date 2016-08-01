@@ -35,10 +35,18 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+require 'pry'
 require 'spec_helper'
 
 describe ZZDB do
   it "can be instantiated" do
     is_expected.to be_a ZZDB
+  end
+
+  describe '.connection' do
+    subject { ZZDB.new.connection }
+    it "exposes the connection" do
+      is_expected.to be_a ActiveRecord::ConnectionAdapters::ConnectionPool
+    end
   end
 end

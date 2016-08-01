@@ -48,12 +48,16 @@ class ZzLink < ActiveRecord::Base
 end
 
 class ZZDB
-  attr_accessor :connection
-  def initialize
+  attr_accessor :connection, :db_filename
+  def initialize db_filename = ":memory:"
+    @db_filename = db_filename
     @connection = ActiveRecord::Base.establish_connection(
       :adapter => "sqlite3",
-      :database  => ":memory:"
+      :database  => @db_filename
     )
+  end
+
+  def define_schema!
     ActiveRecord::Schema.define do
       create_table :zz_cells do |zzcells|
         zzcells.column :value, :string, null: false
