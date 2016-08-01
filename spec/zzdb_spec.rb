@@ -49,4 +49,11 @@ describe ZZDB do
       is_expected.to be_a ActiveRecord::ConnectionAdapters::ConnectionPool
     end
   end
+
+  describe '.filename' do
+    subject { ZZDB.new.filename }
+    it "defaults to in-memory" do
+      is_expected.to eq ":memory:"
+    end
+  end
 end

@@ -48,12 +48,12 @@ class ZzLink < ActiveRecord::Base
 end
 
 class ZZDB
-  attr_accessor :connection, :db_filename
-  def initialize db_filename = ":memory:"
-    @db_filename = db_filename
+  attr_accessor :connection, :filename
+  def initialize filename = ":memory:"
+    @filename = filename
     @connection = ActiveRecord::Base.establish_connection(
       :adapter => "sqlite3",
-      :database  => @db_filename
+      :database  => @filename
     )
   end
 
