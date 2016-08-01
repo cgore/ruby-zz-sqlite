@@ -57,10 +57,10 @@ describe ZZDB do
       end
     end
 
-    describe 'specified' do
+    describe 'user specified' do
       let (:fname) { "foo.db" }
       subject { ZZDB.new(fname).filename }
-      it "can be specified" do
+      it "can be specified by the user" do
         is_expected.to eq fname
       end
     end
