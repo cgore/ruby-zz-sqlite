@@ -38,5 +38,34 @@
 require 'sqlite3'
 require 'active_record'
 
+class ZzCell < ActiveRecord::Base
+end
+
+class ZzDimension < ActiveRecord::Base
+end
+
+class ZzLink < ActiveRecord::Base
+end
+
 class ZZDB
+  attr_accessor :connection
+  def initialize
+    @connection = ActiveRecord::Base.establish_connection(
+      :adapter => "sqlite3",
+      :database  => ":memory:"
+    )
+    ActiveRecord::Schema.define do
+      create_table :zz_cells do |zzcells|
+        zzcells.column :value, :string, null: false
+      end
+      create_table :zz_dimensions do |zzdims|
+        zzdims.column :title, :string, null: false
+      end
+      create_table :zz_links do |zzlinks|
+        zzlinks.column :left_zz_cell_id, :integer, null: false
+        zzlinks.column :right_zz_cell_id, :integer, null: false
+        zzlinks.column :zz_dimension_id, :integer, null: false
+      end
+    end
+  end
 end

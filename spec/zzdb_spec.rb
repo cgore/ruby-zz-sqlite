@@ -39,6 +39,6 @@ require 'spec_helper'
 
 describe ZZDB do
   it "can be instantiated" do
-    expect(ZZDB.new).to be_a ZZDB
+    is_expected.to be_a ZZDB
   end
 end
