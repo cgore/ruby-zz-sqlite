@@ -50,9 +50,19 @@ describe ZZDB do
   end
 
   describe '.filename' do
-    subject { ZZDB.new.filename }
-    it "defaults to in-memory" do
-      is_expected.to eq ":memory:"
+    describe 'default' do
+      subject { ZZDB.new.filename }
+      it "defaults to in-memory" do
+        is_expected.to eq ":memory:"
+      end
+    end
+
+    describe 'specified' do
+      let (:fname) { "foo.db" }
+      subject { ZZDB.new(fname).filename }
+      it "can be specified" do
+        is_expected.to eq fname
+      end
     end
   end
 end
