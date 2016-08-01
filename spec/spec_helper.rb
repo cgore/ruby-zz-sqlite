@@ -39,4 +39,5 @@ ZZDB_TOPDIR = File.expand_path ".."
 ZZDB_LIBDIR = ZZDB_TOPDIR + "/lib/"
 $:.unshift ZZDB_LIBDIR
 
+require 'pry'
 require 'zzdb'
